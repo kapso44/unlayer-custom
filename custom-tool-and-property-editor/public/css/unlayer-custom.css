@@ -1,0 +1,51 @@
+.list-group-item.link-class {
+  cursor: pointer;
+}
+.hide-details {
+  visibility: hidden;
+  display: none;
+}
+.ui-dialog {
+  z-index: 1000;
+}
+.badge-dd-option {
+  height: 14rem;
+  box-sizing: border-box;
+  overflow: auto;
+  border-radius: 2px;
+  border: none;
+}
+.badge-dd-option ul.badges {
+  width: 360px;
+  margin: 0 0 20px;
+  padding: 0;
+  list-style: none;
+}
+.badge-dd-option .badges li:first-child,
+.badge-dd-option .badges li:nth-child(2) {
+  margin-top: 0;
+}
+.badge-dd-option .badges li {
+  margin: 10px 10px 0 0;
+  width: 12.1rem;
+  text-align: center;
+  height: 6rem;
+  float: left;
+  cursor: pointer;
+}
+li:hover, li.selected {
+  border-color: #30d8a2;
+  border: 1.5px solid #30d8a2;
+}
+.blockbuilder-preferences img {
+  position: relative;
+  top: 0.5rem;
+  max-width: 100%;
+  padding: 0.5rem;
+}
+.display-flex {
+  display: flex
+}
+.hide {
+  display: none
+}
