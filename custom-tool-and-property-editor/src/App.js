@@ -28,7 +28,7 @@ class App extends Component {
             window.location.protocol + '//' + window.location.host + '/js/plugins/jquery.js',
             window.location.protocol + '//' + window.location.host + '/js/plugins/jquery-ui.js',
             'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js',
-            window.location.protocol + '//' + window.location.host + '/js/widgets/product_new.js',
+            window.location.protocol + '//' + window.location.host + '/js/widgets/product.js',
             window.location.protocol + '//' + window.location.host + '/js/widgets/footer.js',
           ]
         }}
