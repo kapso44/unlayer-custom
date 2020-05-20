@@ -233,7 +233,66 @@ unlayer.registerTool({
         }
       }
     },
-
+  // color: {
+        //     title: "Colors",
+        //     position: 7,
+        //     options: {
+        //         "color": {
+        //             "label": "Text",
+        //             "defaultValue": '#000000',
+        //             "widget": "color_picker"
+        //         },
+        //         "background_color": {
+        //             "label": "Background",
+        //             "defaultValue": '#ffffff',
+        //             "widget": "color_picker"
+        //         },
+        //     }    
+        // },
+        // spacing: {
+        //     title: "Spacing",
+        //     position: 8,
+        //     options: {
+        //         "alignment": {
+        //             "label": "Alignments",
+        //             "defaultValue": 'center',
+        //             "widget": "alignment"
+        //         },
+        //         "line_height": {
+        //             "label": "Line Height",
+        //             "defaultValue": '10',
+        //             "widget": "counter"
+        //         },
+        //         "border": {
+        //             "label": " Border",
+        //             "defaultValue": {
+        //                 borderTopWidth: "0px",
+        //                 borderTopStyle: "solid",
+        //                 borderTopColor: "#CCC",
+        //                 borderLeftWidth: "0px",
+        //                 borderLeftStyle: "solid",
+        //                 borderLeftColor: "#CCC",
+        //                 borderRightWidth: "0px",
+        //                 borderRightStyle: "solid",
+        //                 borderRightColor: "#CCC",
+        //                 borderBottomWidth: "0px",
+        //                 borderBottomStyle: "solid",
+        //                 borderBottomColor: "#CCC"
+        //             },
+        //             "widget": "border"
+        //         },
+        //         "rounded_border": {
+        //             "label": "Rounded Border",
+        //             "defaultValue": '0',
+        //             "widget": "counter"
+        //         },
+        //         "padding": {
+        //             "label": "Padding (all sides)",
+        //             "defaultValue": '0',
+        //             "widget": "counter"
+        //         },
+        //     }    
+        // }
   },
   renderer: {
     Viewer: unlayer.createViewer({
@@ -253,6 +312,10 @@ unlayer.registerTool({
 });
 
 function renderProductTool(values) {
+  // border-top-style: ${borderTopStyle}; border-top-width: ${borderTopWidth}; border-top-color: ${borderTopColor};
+    // border-right-style: ${borderRightStyle}; border-right-width: ${borderRightWidth}; border-right-color: ${borderRightColor};
+    // border-bottom-style: ${borderBottomStyle}; border-bottom-width: ${borderBottomWidth}; border-bottom-color: ${borderBottomColor};
+    // border-left-style: ${borderLeftStyle}; border-left-width: ${borderLeftWidth}; border-left-color: ${borderLeftColor};
   let { image, name, img_height, img_width, url, actual_price, compare_price, button } = values
   return `
       <table class="grid-item-card" style="box-sizing: border-box; word-break: break-all; width: 100%; padding-top: 5px; padding-right: 0px; padding-bottom: 5px; padding-left: 0px; margin-bottom: 10px;" width="100%">

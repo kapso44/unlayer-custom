@@ -9,10 +9,10 @@ unlayer.registerPropertyEditor({
             return `
             <div id="product-search" class="container col-12">
               <div class="row">
-                <div class="col-sm-6 col-6">
+                <div class="col-sm-8 col-8">
                   <h6 style='margin-top: 10px;'>Add product from store</h6>
                 </div>
-                <div class="col-sm-6 col-6">
+                <div class="col-sm-4 col-4">
                   <button type='button' id="add-product" class='btn btn-primary'>Add Product</button>
                 </div>
               </div>
@@ -46,9 +46,7 @@ unlayer.registerPropertyEditor({
           `
         },
         mount(node, value, updateValue) {
-
             $(document).ready(function () {
-
                 $('#product-name-' + uniqueId).keyup(function (value) {
                     $(".card-title-" + uniqueId).text($(this).val())
                 });
@@ -166,6 +164,18 @@ unlayer.registerTool({
     options: {
         default: {
             title: "Product",
+            options: {
+                "background_color": {
+                    "label": "Background",
+                    "defaultValue": '#ffffff',
+                    "widget": "color_picker"
+                },
+                "background_toggle": {
+                    "label": "Add Background",
+                    "defaultValue": true,
+                    "widget": "toggle"
+                },
+            }
         },
         product: {
             title: "Product Content",
@@ -191,12 +201,10 @@ unlayer.registerTool({
                     "defaultValue": "$0",
                     "widget": "text"
                 },
-                "image": {
-                    "label": "Product Image",
-                    "defaultValue": {
-                        url: "http://placehold.it/250x150/78c5d6/fff/"
-                    },
-                    "widget": "image"
+                "button": {
+                    "label": "Button Name",
+                    "defaultValue": "Buy Now",
+                    "widget": "text"
                 },
                 "url": {
                     "label": "Product Url",
@@ -206,11 +214,6 @@ unlayer.registerTool({
                     },
                     "widget": "link"
                 },
-                "button": {
-                    "label": "Button Name",
-                    "defaultValue": "Buy Now",
-                    "widget": "text"
-                }
             },
         },
         name_attributes: {
@@ -218,6 +221,14 @@ unlayer.registerTool({
             position: 2,
             collapse: false,
             options: {
+                "name_font": {
+                    "label": "Font",
+                    "defaultValue": {
+                        label: 'Arial',
+                        value: 'arial,helvetica,sans-serif'
+                      },
+                    "widget": "font_family"
+                },
                 "name_color": {
                     "label": "Color",
                     "defaultValue": '#000000',
@@ -244,6 +255,14 @@ unlayer.registerTool({
             title: "Actual Price Attributes",
             position: 3,
             options: {
+                "actual_font": {
+                    "label": "Font",
+                    "defaultValue": {
+                        label: 'Arial',
+                        value: 'arial,helvetica,sans-serif'
+                      },
+                    "widget": "font_family"
+                },
                 "actual_color": {
                     "label": "Color",
                     "defaultValue": '#444444',
@@ -270,6 +289,14 @@ unlayer.registerTool({
             title: "Compare Price Attributes",
             position: 4,
             options: {
+                "compare_font": {
+                    "label": "Font",
+                    "defaultValue": {
+                        label: 'Arial',
+                        value: 'arial,helvetica,sans-serif'
+                      },
+                    "widget": "font_family"
+                },
                 "compare_color": {
                     "label": "Color",
                     "defaultValue": '#000000',
@@ -296,6 +323,13 @@ unlayer.registerTool({
             title: "Product Image Attributes",
             position: 5,
             options: {
+                "image": {
+                    "label": "Product Image",
+                    "defaultValue": {
+                        url: "http://placehold.it/250x150/78c5d6/fff/"
+                    },
+                    "widget": "image"
+                },
                 "img_width": {
                     "label": "Image Width",
                     "defaultValue": 100,
@@ -312,6 +346,14 @@ unlayer.registerTool({
             title: "Button Attributes",
             position: 6,
             options: {
+                "button_font": {
+                    "label": "Font",
+                    "defaultValue": {
+                        label: 'Arial',
+                        value: 'arial,helvetica,sans-serif'
+                      },
+                    "widget": "font_family"
+                },
                 "button_text_color": {
                     "label": "Text Color",
                     "defaultValue": '#000000',
@@ -339,66 +381,66 @@ unlayer.registerTool({
                 },
             }
         },
-        color: {
-            title: "Colors",
-            position: 7,
-            options: {
-                "color": {
-                    "label": "Text",
-                    "defaultValue": '#000000',
-                    "widget": "color_picker"
-                },
-                "background_color": {
-                    "label": "Background",
-                    "defaultValue": '#ffffff',
-                    "widget": "color_picker"
-                },
-            }    
-        },
-        spacing: {
-            title: "Spacing",
-            position: 8,
-            options: {
-                "alignment": {
-                    "label": "Alignments",
-                    "defaultValue": 'center',
-                    "widget": "alignment"
-                },
-                "line_height": {
-                    "label": "Line Height",
-                    "defaultValue": '10',
-                    "widget": "counter"
-                },
-                "border": {
-                    "label": " Border",
-                    "defaultValue": {
-                        borderTopWidth: "0px",
-                        borderTopStyle: "solid",
-                        borderTopColor: "#CCC",
-                        borderLeftWidth: "0px",
-                        borderLeftStyle: "solid",
-                        borderLeftColor: "#CCC",
-                        borderRightWidth: "0px",
-                        borderRightStyle: "solid",
-                        borderRightColor: "#CCC",
-                        borderBottomWidth: "0px",
-                        borderBottomStyle: "solid",
-                        borderBottomColor: "#CCC"
-                    },
-                    "widget": "border"
-                },
-                "rounded_border": {
-                    "label": "Rounded Border",
-                    "defaultValue": '0',
-                    "widget": "counter"
-                },
-                "padding": {
-                    "label": "Padding (all sides)",
-                    "defaultValue": '0',
-                    "widget": "counter"
-                },
-            }    
-        }
+        // color: {
+        //     title: "Colors",
+        //     position: 7,
+        //     options: {
+        //         "color": {
+        //             "label": "Text",
+        //             "defaultValue": '#000000',
+        //             "widget": "color_picker"
+        //         },
+        //         "background_color": {
+        //             "label": "Background",
+        //             "defaultValue": '#ffffff',
+        //             "widget": "color_picker"
+        //         },
+        //     }    
+        // },
+        // spacing: {
+        //     title: "Spacing",
+        //     position: 8,
+        //     options: {
+        //         "alignment": {
+        //             "label": "Alignments",
+        //             "defaultValue": 'center',
+        //             "widget": "alignment"
+        //         },
+        //         "line_height": {
+        //             "label": "Line Height",
+        //             "defaultValue": '10',
+        //             "widget": "counter"
+        //         },
+        //         "border": {
+        //             "label": " Border",
+        //             "defaultValue": {
+        //                 borderTopWidth: "0px",
+        //                 borderTopStyle: "solid",
+        //                 borderTopColor: "#CCC",
+        //                 borderLeftWidth: "0px",
+        //                 borderLeftStyle: "solid",
+        //                 borderLeftColor: "#CCC",
+        //                 borderRightWidth: "0px",
+        //                 borderRightStyle: "solid",
+        //                 borderRightColor: "#CCC",
+        //                 borderBottomWidth: "0px",
+        //                 borderBottomStyle: "solid",
+        //                 borderBottomColor: "#CCC"
+        //             },
+        //             "widget": "border"
+        //         },
+        //         "rounded_border": {
+        //             "label": "Rounded Border",
+        //             "defaultValue": '0',
+        //             "widget": "counter"
+        //         },
+        //         "padding": {
+        //             "label": "Padding (all sides)",
+        //             "defaultValue": '0',
+        //             "widget": "counter"
+        //         },
+        //     }    
+        // }
     },
     renderer: {
         Viewer: unlayer.createViewer({
@@ -418,25 +460,27 @@ unlayer.registerTool({
 });
 
 function renderProductTool(values) {
+    // border-top-style: ${borderTopStyle}; border-top-width: ${borderTopWidth}; border-top-color: ${borderTopColor};
+    // border-right-style: ${borderRightStyle}; border-right-width: ${borderRightWidth}; border-right-color: ${borderRightColor};
+    // border-bottom-style: ${borderBottomStyle}; border-bottom-width: ${borderBottomWidth}; border-bottom-color: ${borderBottomColor};
+    // border-left-style: ${borderLeftStyle}; border-left-width: ${borderLeftWidth}; border-left-color: ${borderLeftColor};
     let { 
         image,
-        color,
+        background_toggle,
         background_color,
-        alignment,
-        line_height,
-        border,
-        rounded_border,
-        padding,
         name,
+        name_font,
         name_color, 
         name_align,
         name_line_height,
         name_font_size,
+        actual_font,
         actual_price,
         actual_color,
         actual_align,
         actual_line_height,
         actual_font_size,
+        compare_font,
         compare_price,
         compare_color,
         compare_align,
@@ -446,26 +490,13 @@ function renderProductTool(values) {
         img_width,
         url,
         button,
+        button_font,
         button_align,
         button_color,
         button_text_color,
         button_font_size,
         button_radius,
     } = values
-    const { 
-        borderTopWidth, 
-        borderTopStyle, 
-        borderTopColor,
-        borderLeftWidth,
-        borderLeftStyle,
-        borderLeftColor,
-        borderRightWidth,
-        borderRightStyle,
-        borderRightColor,
-        borderBottomWidth,
-        borderBottomStyle,
-        borderBottomColor
-    } = border
 
     return `
     <table class="grid-item-card" style="box-sizing: border-box; word-break: break-all; width: 100%; 
@@ -473,14 +504,7 @@ function renderProductTool(values) {
     <tbody style="box-sizing: border-box;">
         <tr style="box-sizing: border-box; text-algin: center" >
         <td class="grid-item-card-cell" style="box-sizing: border-box; overflow-x: hidden; overflow-y: hidden; 
-            border-top-style: ${borderTopStyle}; border-top-width: ${borderTopWidth}; border-top-color: ${borderTopColor};
-            border-right-style: ${borderRightStyle}; border-right-width: ${borderRightWidth}; border-right-color: ${borderRightColor};
-            border-bottom-style: ${borderBottomStyle}; border-bottom-width: ${borderBottomWidth}; border-bottom-color: ${borderBottomColor};
-            border-left-style: ${borderLeftStyle}; border-left-width: ${borderLeftWidth}; border-left-color: ${borderLeftColor};
-            text-align: ${alignment}; 
-            padding: ${padding}px; color: ${color}; background-color: ${background_color};
-            line-height: ${line_height}px; border-radius: ${rounded_border}px" 
-            align="center">
+            background-color:${background_toggle ? background_color : ""}" align="center">
             <div class="product-img">
                 <img src=" ${image.url}" alt="${name}" style="box-sizing: border-box; 
                 margin-bottom: 20px; width: ${img_width}%;" 
@@ -489,21 +513,21 @@ function renderProductTool(values) {
             <h1 class="card-title-${uniqueId}" 
                 style="box-sizing: border-box; font-size: ${name_font_size}px; 
                 font-weight: 300; color: ${name_color}; text-align: ${name_align};
-                line-height: ${name_line_height}px
+                line-height: ${name_line_height}px; font-family: ${name_font.value}
             ">
                 ${name}
             </h1>
             <p class="card-text" 
                 style="padding: 10px; box-sizing: border-box; font-size: ${actual_font_size}px; 
                 font-weight: 300; color: ${actual_color}; text-align: ${actual_align};
-                line-height: ${actual_line_height}px
+                line-height: ${actual_line_height}px; font-family: ${actual_font.value}
             ">
                 <strike>${actual_price}</strike>
             </p>
             <p class="card-text" 
                 style="padding: 10px; box-sizing: border-box; font-size: ${compare_font_size}px; 
                 font-weight: 300; color: ${compare_color}; text-align: ${compare_align};
-                line-height: ${compare_line_height}px
+                line-height: ${compare_line_height}px; font-family: ${compare_font.value}
             ">
                 ${compare_price}
             </p>
@@ -511,7 +535,7 @@ function renderProductTool(values) {
             <p style="text-align: ${button_align}; margin:10px">
                 <a href=${url} style="border-radius: ${button_radius}; line-height: 120%; font-size: ${button_font_size}px;
                     display: inline-block; text-decoration: none; padding: 10px 20px;
-                    background-color: ${button_color}; color: ${button_text_color};
+                    background-color: ${button_color}; color: ${button_text_color}; font-family: ${button_font.value}
                 ">
                     ${button}
                 </a>

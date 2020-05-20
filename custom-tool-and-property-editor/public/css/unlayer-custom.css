@@ -49,3 +49,14 @@ li:hover, li.selected {
 .hide {
   display: none
 }
+.ui-icon, .ui-widget-content .ui-icon {
+  background-image: url(/images/ui-icons.png);
+}
+.ui-icon-alert {
+  background-position: center;
+  background-size: cover;
+  margin: 1px 12px 20px 0 !important;
+}
+.product-img {
+  text-align: center;
+}

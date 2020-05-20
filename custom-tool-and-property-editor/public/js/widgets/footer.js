@@ -12,6 +12,9 @@ let
   billing_country,
   trial_ends_at
     = ''
+
+
+
 function getUserAddress() {
   return $.ajax({
     url: jsonPath,
@@ -21,23 +24,43 @@ function getUserAddress() {
 
 $.when(getUserAddress()).done(function (data) {
   let address_data = data.data;
-  billing_address = address_data.billing_address + " " + address_data.billing_address_line_2
+  billing_address = address_data.billing_address + " " + address_data.billing_address_line_2 ? address_data.billing_address_line_2 : ""
   billing_city = address_data.billing_city
   billing_state = address_data.billing_state
   billing_country = address_data.billing_country
   billing_zip = address_data.billing_zip
   trial_ends_at = address_data.trial_ends_at
 
+  let current_date = new Date();
+  let trial_date = new Date(trial_ends_at);
+
   unlayer.registerTool({
     name: 'footer',
     label: 'Footer',
     icon: 'fa-align-left',
     supportedDisplayModes: ['web', 'email'],
-    // transformer: function (values, source) {
-    //   const { value, data } = source
-
-    //   return Object.assign(values, newValues);
-    // },
+    transformer: function (values, source) {
+      const {name, value, data } = source
+      
+      let dialog = $("#footer-dialog").dialog({
+        resizable: false,
+        autoOpen: false,
+        height: "auto",
+        width: 400,
+        modal: true,
+        buttons: {
+          Cancel: function () {
+            $("#footer-dialog").dialog("close");
+          }
+        }
+      });
+      
+      if (trial_date < current_date && name == "brand_toggle" && value === false) {
+        values.brand_toggle = true
+        dialog.dialog("open");
+      }
+      return Object.assign(values);
+    },
     options: {
       subcription: {
         title: "Subcription ",
@@ -258,9 +281,9 @@ $.when(getUserAddress()).done(function (data) {
           </ul>
         </div>
         <div class="footer-premium">
-          <div id="dialog" title="Preminum Alert" class="dialog-search container" 
+          <div id="footer-dialog" title="Premium Alert" class="dialog-search container" style='display:none'><br>
             <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
-              You are not a premium subscriber. Please subscribe a plan to turn off Baymail branding.
+            Please subscribe a plan to turn off Baymail branding.
             </p>
           </div>
         </div>
@@ -274,7 +297,6 @@ $.when(getUserAddress()).done(function (data) {
             $(this).addClass('selected')
             updateValue(selectedLogo);
           });
-          
         });
       }
     }),
@@ -294,34 +316,9 @@ $.when(getUserAddress()).done(function (data) {
       address_line,
       brand_toggle
     } = values
-    let dialog = $("#dialog").dialog({
-      resizable: false,
-      height: "auto",
-      width: 400,
-      modal: true,
-      buttons: {
-        Cancel: function () {
-          $(".dialog-search").dialog("close");
-        }
-      },
-      close: function () {
-        $(".dialog-search").dialog("close");
-        // allFields.removeClass( "ui-state-error" );
-      }
-    });
-    checkAddressInput(address_text)
-    let current_date = new Date();
-    let trial_date = new Date(trial_ends_at);
-    console.log("dial",dialog)
-    if (trial_date >= current_date) {
-      console.log('offf');
-      brand_toggle = brand_toggle
-    } else {
-      dialog.dialog("open");
-      brand_toggle = true
-    }
-    console.log(brand_toggle);
-    return `
+    checkAddressInput(address_text, city, state, country, pincode)
+
+  return `
   <table width="600" cellspacing="0" cellpadding="0" border="0" class="blk" name="blk_footer" style="box-sizing: border-box; word-break: break-all; width: 100%">
     <tbody>
       <tr>
@@ -336,7 +333,7 @@ $.when(getUserAddress()).done(function (data) {
                     </var>
                     <br>
                     <div style="text-align:${address_align}; font-size:${address_size}px";>
-                      <p style="line-height:${address_line}px">${address_text ? address_text : "Your address will appear here"}</p>
+                      <p style="line-height:${address_line}px">${address_text}</p>
                       <p style="line-height:${address_line}px">${city}</p>
                       <p style="line-height:${address_line}px">${state}</p>
                       <p style="line-height:${address_line}px">${country}</p>
@@ -358,12 +355,14 @@ $.when(getUserAddress()).done(function (data) {
                   </div>
                 </td>
               </tr>
+              ${brand_toggle ? `
               <tr>
                 <td name="bmeBadgeImage" style="text-align:${logo_align};padding-top:20px;" align="${logo_align}">
                   <var type="BME_BADGE">
                     <img src="${brand_logos}" style="width: 11rem;" border="0" name="bmeBadgeImage" alt="">
                   </var></td>
-              </tr>
+              </tr>` 
+              : ''}
             </tbody>
           </table>
         </td>
@@ -373,15 +372,17 @@ $.when(getUserAddress()).done(function (data) {
   `
   }
 })
-function checkAddressInput(address) {
-  if (address.length > 0) {
+function checkAddressInput(a1, a2, a3, a4, a5) {
+  a1 = a1.trim();
+  a2 = a2.trim();
+  a3 = a3.trim();
+  a4 = a4.trim();
+  a5 = a5.trim();
+  if (a1.length > 0 && a2.length > 0 && a3.length > 0 && a4.length > 0 && a5.length > 0) {
     $("#address-msg").addClass("hide").removeClass("display-flex")
   } else {
     $("#address-msg").addClass("display-flex").removeClass("hide")
   }
-}
-function checkUserTrial() {
-
 }
 // function checkUnsubscribe(value) {
 //   if(!value) {
